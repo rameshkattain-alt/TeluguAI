@@ -1,0 +1,7 @@
+streamlit
+google-genai
+google-api-python-client
+google-genai
+requests
+pandas
+altair
