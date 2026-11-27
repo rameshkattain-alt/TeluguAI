@@ -12,7 +12,7 @@ st.set_page_config(page_title="360° తెలుగు పొలిటికల
 
 # మీ API Keys
 GEMINI_API_KEY = "AQ.Ab8RN6..."
-YOUTUBE_API_KEY = "AIzaSyA32..."
+YOUTUBE_API_KEY = "AIzaSyC0Oa-gEI_u6ySh-TACw92AZbcype0VB68"
 APIFY_API_TOKEN = "apify_api_YkS..."
 
 
