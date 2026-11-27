@@ -1,1 +1,4 @@
+GEMINI_API_KEY = "మీ_GEMINI_API_KEY"
+YOUTUBE_API_KEY = "ఇప్పుడు_కాపీ_చేసిన_కొత్త_YOUTUBE_KEY"
+APIFY_API_TOKEN = "మీ_APIFY_TOKEN"
 # TeluguAI
