@@ -11,9 +11,9 @@ from datetime import datetime
 st.set_page_config(page_title="360° తెలుగు పొలిటికల్ వార్-రూమ్ AI", page_icon="🛡️", layout="wide")
 
 # మీ API Keys
-GEMINI_API_KEY = "AQ.Ab8RN6..."
-YOUTUBE_API_KEY = "AIzaSyC0Oa-gEI_u6ySh-TACw92AZbcype0VB68"
-APIFY_API_TOKEN = "apify_api_YkS..."
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+YOUTUBE_API_KEY = st.secrets["YOUTUBE_API_KEY"]
+APIFY_API_TOKEN = st.secrets["APIFY_API_TOKEN"]
 
 
 client = genai.Client(api_key=GEMINI_API_KEY)
