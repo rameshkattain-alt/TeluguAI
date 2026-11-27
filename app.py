@@ -16,6 +16,7 @@ YOUTUBE_API_KEY = st.secrets["YOUTUBE_API_KEY"]
 APIFY_API_TOKEN = st.secrets["APIFY_API_TOKEN"]
 
 
+
 client = genai.Client(api_key=GEMINI_API_KEY)
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 
@@ -85,28 +86,42 @@ with t_x:
 
 if st.button("🚀 360° ఆటోమేటిక్ విశ్లేషణ ప్రారంభించు", type="primary"):
     combined_comments = []
-    if yt_url:
-        vid_id = extract_video_id(yt_url)
-        if vid_id:
-            with st.spinner("YouTube కామెంట్లు తెస్తున్నాము..."):
-                try:
-                    yt_list = fetch_youtube_comments(vid_id, num_comments)
-                    combined_comments.extend([f"[YouTube] {c}" for c in yt_list])
-                except Exception as e:
-                    st.error(f"YouTube సమస్య: {e}")
-
-    if ig_url:
+        if ig_url:
         with st.spinner("Instagram రీల్/పోస్ట్ కామెంట్లు తెస్తున్నాము (20-30 సెకన్లు పట్టవచ్చు)..."):
             try:
-                clean_ig = ig_url.split("?")
+                clean_ig = ig_url.split("?")[0]
                 ig_list = fetch_apify_comments(
-                    "shu8hvrXbJbY3Eb9W",
-                    {"directUrls": [clean_ig], "resultsType": "comments", "resultsLimit": num_comments},
+                    "apify~instagram-comment-scraper",
+                    {"directUrls": [clean_ig], "resultsLimit": num_comments},
                     APIFY_API_TOKEN
                 )
                 combined_comments.extend([f"[Instagram] {c}" for c in ig_list])
             except Exception as e:
                 st.error(f"Instagram సమస్య: {e}")
+
+    if fb_url:
+        with st.spinner("Facebook పోస్ట్ కామెంట్లు తెస్తున్నాము (20-30 సెకన్లు పట్టవచ్చు)..."):
+            try:
+                fb_list = fetch_apify_comments(
+                    "apify~facebook-comments-scraper",
+                    {"startUrls": [{"url": fb_url}], "resultsLimit": num_comments},
+                    APIFY_API_TOKEN
+                )
+                combined_comments.extend([f"[Facebook] {c}" for c in fb_list])
+            except Exception as e:
+                st.error(f"Facebook సమస్య: {e}")
+
+    if x_url:
+        with st.spinner("X (Twitter) రిప్లైలు తెస్తున్నాము (20-30 సెకన్లు పట్టవచ్చు)..."):
+            try:
+                x_list = fetch_apify_comments(
+                    "kaitoeasyapi~twitter-x-data-tweet-scraper-pay-per-result-cheapest",
+                    {"startUrls": [x_url], "maxItems": num_comments},
+                    APIFY_API_TOKEN
+                )
+                combined_comments.extend([f"[X/Twitter] {c}" for c in x_list])
+            except Exception as e:
+                st.error(f"X/Twitter సమస్య: {e}")
 
     if fb_url:
         with st.spinner("Facebook పోస్ట్ కామెంట్లు తెస్తున్నాము (20-30 సెకన్లు పట్టవచ్చు)..."):
