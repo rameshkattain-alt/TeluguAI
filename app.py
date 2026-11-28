@@ -98,8 +98,7 @@ if ig_url:
                 combined_comments.extend([f"[Instagram] {c}" for c in ig_list])
             except Exception as e:
                 st.error(f"Instagram సమస్య: {e}")
-
-    if fb_url:
+if fb_url:
         with st.spinner("Facebook పోస్ట్ కామెంట్లు తెస్తున్నాము (20-30 సెకన్లు పట్టవచ్చు)..."):
             try:
                 fb_list = fetch_apify_comments(
