@@ -83,10 +83,10 @@ with t_fb:
     fb_url = st.text_input("Facebook పోస్ట్ లింక్:")
 with t_x:
     x_url = st.text_input("X (Twitter) పోస్ట్ లింక్:")
-
 if st.button("🚀 360° ఆటోమేటిక్ విశ్లేషణ ప్రారంభించు", type="primary"):
     combined_comments = []
-        if ig_url:
+ig_url = st.text_input("Enter URL")
+if ig_url:
         with st.spinner("Instagram రీల్/పోస్ట్ కామెంట్లు తెస్తున్నాము (20-30 సెకన్లు పట్టవచ్చు)..."):
             try:
                 clean_ig = ig_url.split("?")[0]
